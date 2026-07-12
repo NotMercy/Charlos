@@ -296,7 +296,7 @@ Invite:
 https://dsc.gg/charlos
 
 Vote:
-Coming Soon
+https://top.gg/bot/865440490342449203/vote
 
 ---
 
