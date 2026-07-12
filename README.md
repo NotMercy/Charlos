@@ -290,10 +290,10 @@ Website:
 https://charlos.vercel.app
 
 Support Server:
-Coming Soon
+https://discord.gg/tffJzdMk2
 
 Invite:
-Coming Soon
+https://dsc.gg/charlos
 
 Vote:
 Coming Soon
