@@ -12,19 +12,33 @@ All notable changes to Charlos are documented here.
 - GitHub repository
 - Privacy Policy
 - Terms of Service
-- Improved documentation
+- Interactive button navigation
+- New information commands
+- Expanded economy system
+- Additional fun and utility commands
+
+#### 🎨 Redesigned
+- Modern embed layout using author headers
+- Cleaner command responses
+- Refreshed bot branding
+- Improved help menu
+- Updated website interface
+- Consistent command styling
 
 #### ⚡ Improved
-- Redesigned help menu
-- Cleaner embeds
 - Better command organization
-- Improved command responses
-- Updated branding
+- Faster and more reliable responses
+- Improved economy balancing
+- Better button interactions
+- Enhanced user experience
+- Cleaner codebase
 
 #### 🛠 Fixed
 - Various command bugs
-- Economy balancing improvements
+- Interaction and button issues
+- API-related fixes
 - Performance optimizations
+- General stability improvements
 
 ---
 
