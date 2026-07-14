@@ -127,7 +127,7 @@ const CHARLOS_COMMANDS = [
       { name: 'book', desc: 'Searches for book information', usage: '<title>' },
       { name: 'calc', desc: 'Evaluates a math expression', usage: '<expression>' },
       { name: 'character', desc: 'Looks up an anime character', usage: '<name>' },
-      { name: 'convert', desc: 'Converts between units of measurement', usage: '<value> <unit>' },
+      { name: 'convert', desc: 'Converts between units of measurement', usage: '<amount> <from> <to>' },
       { name: 'colorinfo', desc: 'Shows details about a hex color', usage: '<hex>' },
       { name: 'crypto', desc: 'Checks cryptocurrency prices', usage: '<coin>' },
       { name: 'currency', desc: 'Converts between currencies', usage: '<from> <to> <amount>' },
