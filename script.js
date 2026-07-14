@@ -133,7 +133,7 @@ const CHARLOS_COMMANDS = [
       { name: 'currency', desc: 'Converts between currencies', usage: '<from> <to> <amount>' },
       { name: 'define', desc: 'Looks up a word\'s definition', usage: '<word>' },
       { name: 'element', desc: 'Looks up a periodic table element', usage: '<name>' },
-      { name: 'embed', desc: 'Builds a custom embed message', usage: '<title> | <description> | <footer> | <color hex>' },
+      { name: 'embed', desc: 'Builds a custom embed message', usage: '<title> | <description> | <footer> | <hex>' },
       { name: 'enlarge', desc: 'Enlarges an emoji or sticker', usage: '<emoji>' },
       { name: 'github', desc: 'Searches GitHub for a user or repo', usage: '<username>' },
       { name: 'lyrics', desc: 'Searches for song lyrics', usage: '<song>' },
