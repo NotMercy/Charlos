@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms of Service — Charlos</title>
+<title>Charlos — The Discord Bot That Does Almost Everything</title>
+<meta name="description" content="Charlos is a multipurpose Discord bot with 189+ commands across 7 categories: moderation, economy, fun, utility, image, information, and more.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,8 +22,8 @@
       <li><a href="/#commands">Commands</a></li>
       <li><a href="https://discord.gg/tffJzdMk2">Support</a></li>
       <li><a href="https://top.gg/bot/865440490342449203/">Vote</a></li>
-      <li><a href="privacy.html">Privacy</a></li>
-      <li><a href="terms.html">Terms</a></li>
+      <li><a href="/privacy">Privacy</a></li>
+      <li><a href="/terms">Terms</a></li>
     </ul>
     <div class="nav-cta">
       <a class="btn btn-primary btn-sm" href="https://dsc.gg/charlos">Add to Discord</a>
@@ -31,10 +32,164 @@
   </div>
 </nav>
 
-<header class="legal-hero">
+<header class="hero">
+  <div class="wrap hero-centered">
+    <div class="hero-icon">
+      <img src="https://cdn.top.gg/icons/220473935529189376/54552b06510841213502f349a56098da03f2189d37afb16c651b7c58d5ec45f4.webp" alt="Charlos">
+    </div>
+    <span class="eyebrow"><span class="dot"></span> Multipurpose Discord Bot</span>
+    <h1>One bot. Seven categories.<br><span class="accent-text">189+ commands.</span></h1>
+    <p class="lead">Charlos handles your server's moderation, economy, and entertainment in one place — so you don't have to run five different bots to get things done.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://dsc.gg/charlos">Add to Discord</a>
+      <a class="btn btn-secondary" href="https://top.gg/bot/865440490342449203/">Vote Bot</a>
+      <a class="btn btn-ghost" href="https://discord.gg/tffJzdMk2">Support Server</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num" data-count="189+">0</div>
+        <div class="stat-label">Commands</div>
+      </div>
+      <div>
+        <div class="stat-num" data-count="7">0</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div>
+        <div class="stat-num">Free</div>
+        <div class="stat-label">Forever</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="preview-section">
   <div class="wrap">
-    <span class="section-tag">Legal</span>
-    <h1>Terms of Service</h1>
+    <div class="mockup">
+      <div class="mockup-bar"><span></span><span></span><span></span></div>
+      <div class="mockup-msg">
+        <div class="mockup-avatar"><img src="https://cdn.top.gg/icons/220473935529189376/54552b06510841213502f349a56098da03f2189d37afb16c651b7c58d5ec45f4.webp" alt="Charlos"></div>
+        <div class="mockup-body">
+          <div class="mockup-name">Charlos <span class="bot-tag">BOT</span></div>
+          <div class="mockup-cmd">+help</div>
+          <div class="embed-card">
+            <div class="embed-title">📋 Charlos Help &amp; Commands</div>
+            <div class="embed-desc">Loading…</div>
+          </div>
+          <div class="mockup-select">
+            <span class="select-icon">📋</span>
+            <span class="select-text">Help Menu</span>
+            <span class="select-chevron">▾</span>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="strip-section">
+  <div class="wrap">
+
+    <div class="feature-strip reveal reveal-stagger">
+      <div class="feature-item">
+        <span class="feature-icon">🚀</span>
+        <div>
+          <div class="feature-title">Fast &amp; Reliable</div>
+          <div class="feature-desc">Instant command responses, no lag</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🆓</span>
+        <div>
+          <div class="feature-title">No Paywalls</div>
+          <div class="feature-desc">Every one of the 189+ commands is free</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🔧</span>
+        <div>
+          <div class="feature-title">Actively Maintained</div>
+          <div class="feature-desc">New commands added regularly</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="commands">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">Command reference</span>
+      <h2>Everything Charlos can do</h2>
+      <p>All commands use the <code style="font-family:var(--font-mono);color:var(--accent-bright)">+</code> prefix.</p>
+    </div>
+
+    <div class="cmd-search reveal">
+      <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M13.6 12.3a6 6 0 1 0-1.3 1.3l4 4 1.3-1.3-4-4ZM8 12.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9Z"/></svg>
+      <input type="text" id="cmdSearch" placeholder="Search commands… e.g. ban, fish, translate" autocomplete="off">
+      <span id="cmdSearchCount" class="cmd-search-count"></span>
+    </div>
+
+    <div class="cmd-explorer reveal">
+      <div class="cmd-tabs" id="cmdTabs"></div>
+      <div class="cmd-panel" id="cmdPanel"></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="strip-section">
+  <div class="wrap">
+    <div class="dev-banner reveal">
+      <div class="dev-banner-bg"></div>
+      <div class="dev-banner-body">
+        <img class="dev-banner-avatar" id="devAvatar" src="https://api.lanyard.rest/717255337803120681.png" alt="Arisu">
+        <div class="dev-banner-info">
+          <span class="dev-banner-label">Developed by</span>
+          <div class="dev-banner-name">Arisu <span class="dev-banner-handle">(merenobody)</span></div>
+          <span class="dev-banner-id">717255337803120681</span>
+        </div>
+        <a class="dev-banner-link" href="https://discord.com/users/717255337803120681" target="_blank" rel="noopener">View Discord Profile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="brand"><span class="brand-mark"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="#fff" d="M6.8 10.8 4.4 8.4l.9-.9 1.5 1.5 3.9-3.9.9.9-4.8 4.8Z"/></svg></span> Charlos</a>
+        <p>A multipurpose Discord bot with moderation, economy, fun, and utility commands — all in one place.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Bot</h4>
+          <a href="https://dsc.gg/charlos">Add to Discord</a>
+          <a href="https://top.gg/bot/865440490342449203/">Vote Bot</a>
+          <a href="/#commands">Commands</a>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <a href="https://discord.gg/tffJzdMk2">Support Server</a>
+          <a href="mailto:sokkheng8111@gmail.com">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Charlos. Not affiliated with Discord Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>    <h1>Terms of Service</h1>
     <p class="legal-updated">Last updated: July 11, 2026</p>
   </div>
 </header>
