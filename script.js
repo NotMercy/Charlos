@@ -16,7 +16,7 @@ const CHARLOS_COMMANDS = [
       { name: 'purge', desc: 'Bulk deletes recent messages', usage: '<amount>' },
       { name: 'removewarns', desc: 'Clears a member's warnings', usage: '<mention> <amount>' },
       { name: 'slowmode', desc: 'Sets a channel's slowmode delay', usage: '<time>' },
-      { name: 'unban', desc: 'Lifts a ban on a user', usage: '<userID' },
+      { name: 'unban', desc: 'Lifts a ban on a user', usage: '<userID>' },
       { name: 'unlock', desc: 'Unlocks a previously locked channel', usage: null },
       { name: 'unmute', desc: 'Removes a member's timeout', usage: '<mention>' },
       { name: 'warn', desc: 'Issues a warning to a member', usage: '<mention> <reason>' },
