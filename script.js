@@ -240,6 +240,31 @@ const CHARLOS_COMMANDS = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Handle the clean /commands URL: scroll to the section instead of a real navigation
+  const commandsSection = document.getElementById('commands');
+  if (commandsSection) {
+    // Landed directly on /commands (or /commands was loaded via the vercel.json rewrite)
+    if (window.location.pathname === '/commands') {
+      setTimeout(() => {
+        commandsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+
+    // Intercept clicks on any "Commands" link so it smooth-scrolls + updates the URL
+    // without a full page reload when already on the homepage
+    document.querySelectorAll('a[href="/commands"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const onHomepage = window.location.pathname === '/' || window.location.pathname === '/commands';
+        if (onHomepage) {
+          e.preventDefault();
+          commandsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.history.pushState({}, '', '/commands');
+        }
+        // Otherwise (on /privacy or /terms) let the link navigate normally to /commands
+      });
+    });
+  }
+
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---------- Command explorer (tabs + panel + search) ----------
