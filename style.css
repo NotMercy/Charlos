@@ -471,15 +471,20 @@ img{max-width:100%;display:block;}
   gap:5px;
 }
 .mockup-name .bot-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
   font-size:0.62rem;
-  background:var(--accent);
+  background:#5865F2;
   color:#fff;
-  padding:1px 5px;
+  padding:1px 6px 1px 5px;
   border-radius:4px;
   margin-left:6px;
   vertical-align:middle;
   font-weight:600;
+  letter-spacing:0.02em;
 }
+.mockup-name .bot-tag svg{flex-shrink:0;}
 .mockup-cmd{
   font-family:var(--font-mono);
   font-size:0.82rem;
