@@ -1150,12 +1150,8 @@ footer{
   *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
 }
 
-/* Fix Android repaint/reveal issue on Commands page */
-.cmd-search,
-.cmd-explorer,
-.cmd-tabs,
-.cmd-panel {
+/* Disable reveal animation only on the Commands page */
+.cmd-section .reveal {
     opacity: 1 !important;
-    visibility: visible !important;
     transform: none !important;
 }
