@@ -240,31 +240,6 @@ const CHARLOS_COMMANDS = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Handle the clean /commands URL: scroll to the section instead of a real navigation
-  const commandsSection = document.getElementById('commands');
-  if (commandsSection) {
-    // Landed directly on /commands (or /commands was loaded via the vercel.json rewrite)
-    if (window.location.pathname === '/commands') {
-      setTimeout(() => {
-        commandsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
-    }
-
-    // Intercept clicks on any "Commands" link so it smooth-scrolls + updates the URL
-    // without a full page reload when already on the homepage
-    document.querySelectorAll('a[href="/commands"]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const onHomepage = window.location.pathname === '/' || window.location.pathname === '/commands';
-        if (onHomepage) {
-          e.preventDefault();
-          commandsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          window.history.pushState({}, '', '/commands');
-        }
-        // Otherwise (on /privacy or /terms) let the link navigate normally to /commands
-      });
-    });
-  }
-
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---------- Command explorer (tabs + panel + search) ----------
@@ -274,7 +249,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchCount = document.getElementById('cmdSearchCount');
 
   if (tabsEl && panelEl) {
-    let activeIndex = 0;
+    const totalCount = CHARLOS_COMMANDS.reduce((sum, cat) => sum + cat.commands.length, 0);
+    let activeIndex = 'all';
 
     function escapeHTML(str) {
       return String(str)
@@ -283,11 +259,13 @@ document.addEventListener('DOMContentLoaded', () => {
         .replace(/>/g, '&gt;');
     }
 
-    function cmdCardHTML(cmd, catIcon) {
+    function cmdCardHTML(cmd, catTitle) {
       const usageText = cmd.usage ? `+${cmd.name} ${cmd.usage}` : `+${cmd.name}`;
       const usageLine = `<div class="cmd-card-usage">Usage: <code>${escapeHTML(usageText)}</code></div>`;
+      const badge = catTitle ? `<span class="cmd-card-badge">${catTitle}</span>` : '';
       return `
         <div class="cmd-card">
+          ${badge}
           <div class="cmd-card-name">${cmd.name}</div>
           <div class="cmd-card-desc">${cmd.desc}</div>
           ${usageLine}
@@ -295,7 +273,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderTabs() {
-      tabsEl.innerHTML = CHARLOS_COMMANDS.map((cat, i) => `
+      const allTab = `
+        <button class="cmd-tab${activeIndex === 'all' ? ' active' : ''}" data-index="all">
+          <span class="cmd-tab-icon">✦</span>
+          <span class="cmd-tab-text">
+            <span class="cmd-tab-title">All</span>
+            <span class="cmd-tab-count">${totalCount} commands</span>
+          </span>
+        </button>`;
+
+      tabsEl.innerHTML = allTab + CHARLOS_COMMANDS.map((cat, i) => `
         <button class="cmd-tab${i === activeIndex ? ' active' : ''}" data-index="${i}">
           <span class="cmd-tab-icon">${cat.icon}</span>
           <span class="cmd-tab-text">
@@ -307,7 +294,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       tabsEl.querySelectorAll('.cmd-tab').forEach(btn => {
         btn.addEventListener('click', () => {
-          activeIndex = parseInt(btn.dataset.index, 10);
+          const idx = btn.dataset.index;
+          activeIndex = idx === 'all' ? 'all' : parseInt(idx, 10);
           if (searchInput) searchInput.value = '';
           if (searchCount) searchCount.textContent = '';
           renderTabs();
@@ -317,6 +305,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderPanel() {
+      if (activeIndex === 'all') {
+        panelEl.innerHTML = `
+          <div class="cmd-panel-head">
+            <span class="cmd-panel-icon">✦</span>
+            <div>
+              <div class="cmd-panel-title">All commands</div>
+              <div class="cmd-panel-desc">Every command Charlos has, across every category</div>
+            </div>
+          </div>
+          <div class="cmd-card-list">
+            ${CHARLOS_COMMANDS.map(cat => cat.commands.map(cmd => cmdCardHTML(cmd, cat.title)).join('')).join('')}
+          </div>
+        `;
+        return;
+      }
       const cat = CHARLOS_COMMANDS[activeIndex];
       panelEl.innerHTML = `
         <div class="cmd-panel-head">
@@ -327,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         <div class="cmd-card-list">
-          ${cat.commands.map(cmd => cmdCardHTML(cmd, cat.icon)).join('')}
+          ${cat.commands.map(cmd => cmdCardHTML(cmd)).join('')}
         </div>
       `;
     }
@@ -361,16 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         <div class="cmd-card-list">
-          ${results.map(r => {
-            const usageText = r.cmd.usage ? `+${r.cmd.name} ${r.cmd.usage}` : `+${r.cmd.name}`;
-            return `
-            <div class="cmd-card">
-              <div class="cmd-card-name">${r.catIcon} ${r.cmd.name}</div>
-              <div class="cmd-card-desc">${r.cmd.desc}</div>
-              <div class="cmd-card-usage">Usage: <code>${escapeHTML(usageText)}</code></div>
-            </div>
-          `;
-          }).join('')}
+          ${results.map(r => cmdCardHTML(r.cmd, r.catTitle)).join('')}
         </div>
       `;
     }
