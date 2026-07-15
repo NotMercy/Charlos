@@ -1149,3 +1149,13 @@ footer{
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
 }
+
+/* Fix Android repaint/reveal issue on Commands page */
+.cmd-search,
+.cmd-explorer,
+.cmd-tabs,
+.cmd-panel {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
