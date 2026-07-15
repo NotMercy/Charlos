@@ -257,9 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (filtersEl && listEl) {
     const slugify = title => title.toLowerCase();
-    const params = new URLSearchParams(window.location.search);
-    const requestedCat = params.get('cat');
-    let activeSlug = CHARLOS_COMMANDS.some(c => slugify(c.title) === requestedCat) ? requestedCat : 'all';
+    const rawQuery = window.location.search.slice(1); // strip leading "?"
+    let activeSlug = CHARLOS_COMMANDS.some(c => slugify(c.title) === rawQuery) ? rawQuery : 'all';
 
     const totalCount = CHARLOS_COMMANDS.reduce((s, c) => s + c.commands.length, 0);
 
