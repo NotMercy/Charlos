@@ -242,149 +242,98 @@ const CHARLOS_COMMANDS = [
 document.addEventListener('DOMContentLoaded', () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---------- Command explorer (tabs + panel + search) ----------
-  const tabsEl = document.getElementById('cmdTabs');
-  const panelEl = document.getElementById('cmdPanel');
+  function escapeHTML(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  // ---------- Commands page (filter pills + searchable list) ----------
+  const filtersEl = document.getElementById('cmdFilters');
+  const listEl = document.getElementById('cmdList');
   const searchInput = document.getElementById('cmdSearch');
   const searchCount = document.getElementById('cmdSearchCount');
 
-  if (tabsEl && panelEl) {
-    const totalCount = CHARLOS_COMMANDS.reduce((sum, cat) => sum + cat.commands.length, 0);
-    let activeIndex = 'all';
+  if (filtersEl && listEl) {
+    const slugify = title => title.toLowerCase();
+    const params = new URLSearchParams(window.location.search);
+    const requestedCat = params.get('cat');
+    let activeSlug = CHARLOS_COMMANDS.some(c => slugify(c.title) === requestedCat) ? requestedCat : 'all';
 
-    function escapeHTML(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+    const totalCount = CHARLOS_COMMANDS.reduce((s, c) => s + c.commands.length, 0);
+
+    function chipHTML(usage) {
+      if (!usage) return '';
+      const params = usage.match(/<[^>]+>/g) || [];
+      return params.map(p => `<span class="cmd-chip">${escapeHTML(p)}</span>`).join('');
     }
 
-    function cmdCardHTML(cmd, catTitle) {
-      const usageText = cmd.usage ? `+${cmd.name} ${cmd.usage}` : `+${cmd.name}`;
-      const usageLine = `<div class="cmd-card-usage">Usage: <code>${escapeHTML(usageText)}</code></div>`;
-      const badge = catTitle ? `<span class="cmd-card-badge">${catTitle}</span>` : '';
+    function commandRowHTML(cmd, cat) {
       return `
-        <div class="cmd-card">
-          ${badge}
-          <div class="cmd-card-name">${cmd.name}</div>
-          <div class="cmd-card-desc">${cmd.desc}</div>
-          ${usageLine}
+        <div class="cmd-row-card">
+          <div class="cmd-row-top">
+            <span class="cmd-row-name">${cmd.name}</span>
+            <span class="cmd-row-cat">${cat.icon} ${cat.title}</span>
+          </div>
+          <p class="cmd-row-desc">${cmd.desc}</p>
+          <div class="cmd-row-chips">
+            <span class="cmd-chip cmd-chip-prefix">+${cmd.name}</span>
+            ${chipHTML(cmd.usage)}
+          </div>
         </div>`;
     }
 
-    function renderTabs() {
-      const allTab = `
-        <button class="cmd-tab${activeIndex === 'all' ? ' active' : ''}" data-index="all">
-          <span class="cmd-tab-icon">✦</span>
-          <span class="cmd-tab-text">
-            <span class="cmd-tab-title">All</span>
-            <span class="cmd-tab-count">${totalCount} commands</span>
-          </span>
-        </button>`;
+    function renderFilters() {
+      const pills = [{ slug: 'all', icon: '📋', title: 'All', count: totalCount }]
+        .concat(CHARLOS_COMMANDS.map(c => ({ slug: slugify(c.title), icon: c.icon, title: c.title, count: c.commands.length })));
 
-      tabsEl.innerHTML = allTab + CHARLOS_COMMANDS.map((cat, i) => `
-        <button class="cmd-tab${i === activeIndex ? ' active' : ''}" data-index="${i}">
-          <span class="cmd-tab-icon">${cat.icon}</span>
-          <span class="cmd-tab-text">
-            <span class="cmd-tab-title">${cat.title}</span>
-            <span class="cmd-tab-count">${cat.commands.length} commands</span>
-          </span>
+      filtersEl.innerHTML = pills.map(p => `
+        <button class="cmd-filter${p.slug === activeSlug ? ' active' : ''}" data-slug="${p.slug}">
+          ${p.title} <span class="cmd-filter-count">${p.count}</span>
         </button>
       `).join('');
 
-      tabsEl.querySelectorAll('.cmd-tab').forEach(btn => {
+      filtersEl.querySelectorAll('.cmd-filter').forEach(btn => {
         btn.addEventListener('click', () => {
-          const idx = btn.dataset.index;
-          activeIndex = idx === 'all' ? 'all' : parseInt(idx, 10);
+          activeSlug = btn.dataset.slug;
           if (searchInput) searchInput.value = '';
           if (searchCount) searchCount.textContent = '';
-          renderTabs();
-          renderPanel();
+          renderFilters();
+          renderList();
         });
       });
     }
 
-    function renderPanel() {
-      if (activeIndex === 'all') {
-        panelEl.innerHTML = `
-          <div class="cmd-panel-head">
-            <span class="cmd-panel-icon">✦</span>
-            <div>
-              <div class="cmd-panel-title">All commands</div>
-              <div class="cmd-panel-desc">Every command Charlos has, across every category</div>
-            </div>
-          </div>
-          <div class="cmd-card-list">
-            ${CHARLOS_COMMANDS.map(cat => cat.commands.map(cmd => cmdCardHTML(cmd, cat.title)).join('')).join('')}
-          </div>
-        `;
-        return;
-      }
-      const cat = CHARLOS_COMMANDS[activeIndex];
-      panelEl.innerHTML = `
-        <div class="cmd-panel-head">
-          <span class="cmd-panel-icon">${cat.icon}</span>
-          <div>
-            <div class="cmd-panel-title">${cat.title}</div>
-            <div class="cmd-panel-desc">${cat.desc}</div>
-          </div>
-        </div>
-        <div class="cmd-card-list">
-          ${cat.commands.map(cmd => cmdCardHTML(cmd)).join('')}
-        </div>
-      `;
-    }
+    function renderList(query) {
+      const q = query ? (query.startsWith('+') ? query.slice(1) : query) : '';
+      const rows = [];
 
-    function renderSearchResults(query) {
-      const q = query.startsWith('+') ? query.slice(1) : query;
-      const results = [];
       CHARLOS_COMMANDS.forEach(cat => {
+        if (activeSlug !== 'all' && slugify(cat.title) !== activeSlug) return;
         cat.commands.forEach(cmd => {
-          if (cmd.name.toLowerCase().includes(q)) {
-            results.push({ cmd, catIcon: cat.icon, catTitle: cat.title });
-          }
+          if (q && !cmd.name.toLowerCase().includes(q)) return;
+          rows.push(commandRowHTML(cmd, cat));
         });
       });
 
       if (searchCount) {
-        searchCount.textContent = `${results.length} match${results.length === 1 ? '' : 'es'}`;
+        searchCount.textContent = q ? `${rows.length} match${rows.length === 1 ? '' : 'es'}` : '';
       }
 
-      if (!results.length) {
-        panelEl.innerHTML = `<p class="cmd-search-empty visible">No commands match that search.</p>`;
-        return;
-      }
-
-      panelEl.innerHTML = `
-        <div class="cmd-panel-head">
-          <span class="cmd-panel-icon">🔍</span>
-          <div>
-            <div class="cmd-panel-title">Search Results</div>
-            <div class="cmd-panel-desc">Matching commands across all categories</div>
-          </div>
-        </div>
-        <div class="cmd-card-list">
-          ${results.map(r => cmdCardHTML(r.cmd, r.catTitle)).join('')}
-        </div>
-      `;
+      listEl.innerHTML = rows.length
+        ? rows.join('')
+        : `<p class="cmd-search-empty visible">No commands match that search.</p>`;
     }
 
     if (searchInput) {
       searchInput.addEventListener('input', () => {
-        const q = searchInput.value.trim().toLowerCase();
-        if (!q) {
-          if (searchCount) searchCount.textContent = '';
-          renderTabs();
-          renderPanel();
-          return;
-        }
-        tabsEl.querySelectorAll('.cmd-tab').forEach(b => b.classList.remove('active'));
-        renderSearchResults(q);
+        renderList(searchInput.value.trim().toLowerCase());
       });
     }
 
-    renderTabs();
-    renderPanel();
+    renderFilters();
+    renderList();
   }
 
   // Fetch live developer avatar from Lanyard's full API (auto-updates when Arisu changes PFP)
