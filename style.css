@@ -446,20 +446,17 @@ img{max-width:100%;display:block;}
   gap:14px;
 }
 .mockup-avatar{
-  width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(145deg,var(--accent-bright),var(--accent-dim));
+  width:42px;
+  height:42px;
   flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-display);
-  font-weight:700;
-  color:#fff;
-  overflow:hidden;
-  padding:5px;
+  padding:0;
+  line-height:0;
 }
 .mockup-avatar img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
+  width:42px;
+  height:42px;
+  object-fit:cover;
+  display:block;
 }
 .mockup-body{flex:1;min-width:0;}
 .mockup-name{
