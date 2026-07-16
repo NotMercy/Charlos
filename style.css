@@ -448,14 +448,19 @@ img{max-width:100%;display:block;}
 .mockup-avatar{
   width:42px;
   height:42px;
+  border-radius:50%;  /* Keep this for circle */
+  background:linear-gradient(145deg,var(--accent-bright),var(--accent-dim));
   flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;  /* Keep this to clip the image to circle */
   padding:0;
-  line-height:0;
 }
 .mockup-avatar img{
-  width:42px;
-  height:42px;
-  object-fit:cover;
+  width:100%;
+  height:100%;
+  object-fit:cover;  /* ← THIS is the key change */
   display:block;
 }
 .mockup-body{flex:1;min-width:0;}
