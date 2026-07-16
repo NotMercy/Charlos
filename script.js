@@ -4,7 +4,7 @@ const CHARLOS_COMMANDS = [
     title: 'Moderation',
     desc: 'Keep your server safe and organized with these moderation tools.',
     commands: [
-      { name: 'ban', desc: 'Bans a member from the server', usage: '<mention> <reason>' },
+      { name: 'ban', desc: 'Bans a member from the server', usage: '<mention/userID> <reason>' },
       { name: 'checkwarns', desc: 'Views a member\'s warning history', usage: '<mention>' },
       { name: 'createchannel', desc: 'Creates a new text or voice channel', usage: '<text> <text/voice>' },
       { name: 'deletechannel', desc: 'Deletes the specified channel', usage: '<#channel>' },
@@ -13,7 +13,7 @@ const CHARLOS_COMMANDS = [
       { name: 'mute', desc: 'Times out a member temporarily', usage: '<mention> <duration> <reason>' },
       { name: 'nick', desc: 'Changes a member\'s server nickname', usage: '<mention> <nickname>' },
       { name: 'purge', desc: 'Bulk deletes recent messages', usage: '<amount>' },
-      { name: 'removewarns', desc: 'Clears a member\'s warnings', usage: '<mention>' },
+      { name: 'removewarns', desc: 'Clears a member\'s warnings', usage: '<mention> <amount>' },
       { name: 'slowmode', desc: 'Sets a channel\'s slowmode delay', usage: '<time>' },
       { name: 'unban', desc: 'Lifts a ban on a user', usage: '<userID>' },
       { name: 'unlock', desc: 'Unlocks a previously locked channel', usage: null },
