@@ -1,10 +1,52 @@
 # 📋 Changelog
 
-All notable changes to Charlos are documented here.
+All notable changes to **Charlos** are documented here.
+
+---
+
+## [2.1.0] - July 16, 2026
+
+### 🎉 Major Update
+
+#### ✨ Added
+- Complete command documentation website
+- Interactive command search with live filtering
+- Command category explorer
+- Improved website navigation
+- New animations and visual effects
+- Additional utility, information, and fun commands
+- More economy activities and features
+
+#### 🎨 Redesigned
+- Brand new Charlos profile picture
+- New official bot banner
+- Refreshed Charlos branding
+- Modernized website interface
+- Improved mobile responsiveness
+- Cleaner help menu design
+- Better command layouts and embeds
+
+#### ⚡ Improved
+- Remade several existing commands
+- Better command organization
+- Faster website performance
+- Improved search experience
+- Enhanced user experience across the bot
+- Cleaner and more maintainable codebase
+- More consistent styling throughout the bot and website
+
+#### 🛠️ Fixed
+- Fixed various command bugs
+- Fixed interaction and component issues
+- Fixed mobile rendering issues on the website
+- Improved API reliability
+- Performance optimizations
+- General stability improvements
 
 ---
 
 ## [2.0.0] - July 2026
+
 ### 🚀 Charlos Remastered
 
 #### ✨ Added
@@ -33,7 +75,7 @@ All notable changes to Charlos are documented here.
 - Enhanced user experience
 - Cleaner codebase
 
-#### 🛠 Fixed
+#### 🛠️ Fixed
 - Various command bugs
 - Interaction and button issues
 - API-related fixes
@@ -51,7 +93,7 @@ All notable changes to Charlos are documented here.
 - New fun commands
 - Information commands
 
-### 🛠 Improved
+### 🛠️ Improved
 - Command stability
 - Embed designs
 - Economy system
@@ -66,7 +108,7 @@ All notable changes to Charlos are documented here.
 - Server information commands
 - Utility improvements
 
-### 🛠 Improved
+### 🛠️ Improved
 - General performance
 - Bug fixes
 
