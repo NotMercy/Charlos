@@ -6,7 +6,6 @@ const CHARLOS_COMMANDS = [
     commands: [
       { name: 'ban', desc: 'Bans a member from the server', usage: '<mention> <reason>' },
       { name: 'checkwarns', desc: 'Views a member\'s warning history', usage: '<mention>' },
-      { name: 'createmuterole', desc: 'Auto-creates a properly configured muted role', usage: null },
       { name: 'createchannel', desc: 'Creates a new text or voice channel', usage: '<text> <text/voice>' },
       { name: 'deletechannel', desc: 'Deletes the specified channel', usage: '<#channel>' },
       { name: 'kick', desc: 'Removes a member from the server', usage: '<mention> <reason>' },
