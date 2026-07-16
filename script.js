@@ -11,7 +11,7 @@ const CHARLOS_COMMANDS = [
       { name: 'deletechannel', desc: 'Deletes the specified channel', usage: '<#channel>' },
       { name: 'kick', desc: 'Removes a member from the server', usage: '<mention> <reason>' },
       { name: 'lock', desc: 'Locks a channel to stop messages', usage: '<reason>' },
-      { name: 'mute', desc: 'Times out a member temporarily', usage: '<mention> <reason>' },
+      { name: 'mute', desc: 'Times out a member temporarily', usage: '<mention> <duration> <reason>' },
       { name: 'nick', desc: 'Changes a member\'s server nickname', usage: '<mention> <nickname>' },
       { name: 'purge', desc: 'Bulk deletes recent messages', usage: '<amount>' },
       { name: 'removewarns', desc: 'Clears a member\'s warnings', usage: '<mention>' },
