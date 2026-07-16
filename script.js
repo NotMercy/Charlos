@@ -28,7 +28,7 @@ const CHARLOS_COMMANDS = [
     desc: 'Earn cash, play mini-games, and climb the global leaderboards.',
     commands: [
       { name: 'adventure', desc: 'Goes on a random cash-earning adventure', usage: null },
-      { name: 'bal', desc: 'Checks a wallet balance', usage: null },
+      { name: 'balance', desc: 'Checks a wallet balance', usage: null },
       { name: 'beg', desc: 'Begs for a small chance of cash', usage: null },
       { name: 'bomb', desc: 'Risks cash on a bomb minigame', usage: '<amount>' },
       { name: 'buy', desc: 'Purchases an item from the shop', usage: null },
