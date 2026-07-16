@@ -411,7 +411,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Hero embed mockup rotation
-const botAvatar = 'https://cdn.top.gg/icons/220473935529189376/a24f97e4140f7df12260221074b613d7f1c4b828c86756d07db3723e8a4da20b.webp';
 
   const embeds = [
     {
