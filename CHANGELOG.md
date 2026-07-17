@@ -4,6 +4,21 @@ All notable changes to **Charlos** are documented here.
 
 ---
 
+## [2.1.1] - July 17, 2026
+
+### 🛠️ Maintenance Update
+
+#### ⚡ Improved
+- Optimized several commands for better performance and responsiveness
+- General backend optimizations for smoother execution
+
+#### 🐛 Fixed
+- Fixed a cooldown exploit where users could bypass command cooldowns by using the same command in different servers
+- Cooldowns now apply correctly and consistently across all servers
+- General stability improvements
+
+---
+
 ## [2.1.0] - July 16, 2026
 
 ### 🎉 Major Update
