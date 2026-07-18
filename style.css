@@ -473,15 +473,6 @@ img{max-width:100%;display:block;}
   gap: 6px;
   color: #208AAE; /* Discord bot username color */
 }
-
-.mockup-name{
-  font-weight:600;
-  font-size:0.92rem;
-  margin-bottom:2px;
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
 .mockup-name .bot-tag{
   display:inline-flex;
   align-items:center;
@@ -502,12 +493,6 @@ img{max-width:100%;display:block;}
   font-size:0.82rem;
   color:var(--text-dim);
   margin-bottom:10px;
-}
-
-.mockup-name .bot-tag .bot-check {
-  width: 15px;
-  height: 15px;
-  flex-shrink: 0;
 }
 
 .embed-card{
