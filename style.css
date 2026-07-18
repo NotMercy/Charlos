@@ -498,12 +498,7 @@ img{max-width:100%;display:block;}
   height: 15px;
   flex-shrink: 0;
 }
-.mockup-cmd{
-  font-family:var(--font-mono);
-  font-size:0.82rem;
-  color:var(--text-dim);
-  margin-bottom:10px;
-}
+
 .embed-card{
   background:var(--surface);
   border-left:4px solid var(--accent);
