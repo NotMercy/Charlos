@@ -4,6 +4,16 @@ All notable changes to **Charlos** are documented here.
 
 ---
 
+## [2.1.2] - July 18, 2026
+
+### ✨ What's New
+
+#### 🎉 Added
+- Added new features and options to various existing commands
+- Expanded functionality across multiple command categories
+
+---
+
 ## [2.1.1] - July 17, 2026
 
 ### 🛠️ Maintenance Update
