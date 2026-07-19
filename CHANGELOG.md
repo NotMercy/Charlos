@@ -4,6 +4,24 @@ All notable changes to **Charlos** are documented here.
 
 ---
 
+## [2.1.3] - July 19, 2026
+
+### ✨ What's New
+
+#### 🎉 Added
+- Added multi-format download support to image commands:
+  - **+avatar** — Now supports PNG, JPG, WEBP, and GIF (animated)
+  - **+userbanner** — Now supports PNG, JPG, WEBP, and GIF (animated)
+  - **+servericon** — Now supports PNG, JPG, WEBP, and GIF (animated)
+  - **+emojiinfo** — Now supports PNG, JPG, WEBP, and GIF (animated)
+  - **+enlarge** — Now supports PNG, JPG, WEBP, and GIF for **custom emojis only** (Unicode emojis are not supported)
+
+#### ⚡ Improved
+- General performance improvements and optimizations across various commands
+- Enhanced command responsiveness and stability
+
+---
+
 ## [2.1.2] - July 18, 2026
 
 ### ✨ What's New
